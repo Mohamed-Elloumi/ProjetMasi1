@@ -7,6 +7,9 @@ public class LoggerContext {
         this.strategy = strategy;
     }
 
+    public void setStrategy(LoggerStrategy strategy) {
+        this.strategy = strategy;
+    }
     public void log(String message) {
         strategy.log(message);
     }

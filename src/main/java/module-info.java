@@ -11,6 +11,7 @@ module com.example.projetmasi {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires javafx.swing;
+    requires java.sql;
 
     opens com.example.projetmasi to javafx.fxml;
     exports com.example.projetmasi;

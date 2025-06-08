@@ -1,0 +1,3 @@
+[LOG] Logger changé : Fichier (logs.txt)
+[LOG] Shape drawn: RECTANGLE at (413.0, 245.0)
+[LOG] Shape drawn: RECTANGLE at (219.0, 362.0)

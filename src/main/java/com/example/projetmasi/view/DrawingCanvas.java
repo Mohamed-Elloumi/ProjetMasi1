@@ -9,6 +9,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 
 import javax.imageio.ImageIO;
 import java.io.File;
@@ -21,6 +22,7 @@ public class DrawingCanvas extends StackPane {
     private ShapeFactory.ShapeType currentShapeType = ShapeFactory.ShapeType.RECTANGLE;
     private Consumer<ShapeDrawable> onShapeCreated;
     private double startX, startY;
+    private Color currentColor = Color.BLACK; // ✅ couleur courante
 
     private final List<ShapeDrawable> shapes = new ArrayList<>();
     private final Stack<Command> undoStack = new Stack<>();
@@ -45,15 +47,14 @@ public class DrawingCanvas extends StackPane {
 
             shape.setPosition(startX, startY);
             shape.setSize(endX - startX, endY - startY);
+            shape.setColor(currentColor); // ✅ appliquer la couleur courante
 
-            // ✅ Utiliser le pattern Command correctement
             executeCommand(new DrawShapeCommand(shape, this));
 
             if (onShapeCreated != null) onShapeCreated.accept(shape);
         });
     }
 
-    // ➕ Appelée depuis DrawShapeCommand
     public void drawShape(ShapeDrawable shape) {
         shapes.add(shape);
         redraw();
@@ -73,9 +74,9 @@ public class DrawingCanvas extends StackPane {
     }
 
     public void clear() {
-        shapes.clear(); // aussi vider les formes
+        shapes.clear();
         redraw();
-        undoStack.clear(); // vider l'historique si nécessaire
+        undoStack.clear();
         redoStack.clear();
     }
 
@@ -116,5 +117,10 @@ public class DrawingCanvas extends StackPane {
 
     public void setOnShapeCreated(Consumer<ShapeDrawable> callback) {
         this.onShapeCreated = callback;
+    }
+
+    // ✅ Permet de mettre à jour la couleur sélectionnée dans le contrôleur
+    public void setCurrentColor(Color color) {
+        this.currentColor = color;
     }
 }
