@@ -1,3 +1,17 @@
 [LOG] Logger changé : Fichier (logs.txt)
 [LOG] Shape drawn: RECTANGLE at (413.0, 245.0)
 [LOG] Shape drawn: RECTANGLE at (219.0, 362.0)
+[LOG] Logger changé : Fichier (logs.txt)
+[LOG] Canvas effacé.
+[LOG] Mode sélectionné : TRIANGLE
+[LOG] Shape drawn: TRIANGLE from (251.0, 495.0)
+[LOG] Mode sélectionné : CERCLE
+[LOG] Shape drawn: CIRCLE at (641.0, 302.0)
+[LOG] Shape drawn: CIRCLE at (844.0, 209.0)
+[LOG] Mode sélectionné : RECTANGLE
+[LOG] Shape drawn: RECTANGLE at (236.0, 297.0)
+[LOG] Mode sélectionné : CERCLE
+[LOG] Shape drawn: CIRCLE at (119.0, 361.0)
+[LOG] Shape drawn: CIRCLE at (188.0, 258.0)
+[LOG] Shape drawn: CIRCLE at (203.0, 124.0)
+[LOG] Shape drawn: CIRCLE at (398.0, 95.0)

@@ -1,11 +1,11 @@
 package com.example.projetmasi.model.shape;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
+
 
 public class TriangleShape implements ShapeDrawable {
     private double startX, startY, endX, endY;
-    private Color color = Color.BLACK; // ✅ couleur par défaut
+
 
     @Override
     public void draw(GraphicsContext gc) {
@@ -14,7 +14,7 @@ public class TriangleShape implements ShapeDrawable {
         double[] xPoints = { baseMidX, startX, endX };
         double[] yPoints = { startY, endY, endY };
 
-        gc.setStroke(color); // ✅ appliquer la couleur
+
         gc.strokePolygon(xPoints, yPoints, 3);
     }
 
@@ -30,15 +30,7 @@ public class TriangleShape implements ShapeDrawable {
         this.endY = startY + dy;
     }
 
-    @Override
-    public void setColor(Color color) {
-        this.color = color;
-    }
 
-    @Override
-    public Color getColor() {
-        return color;
-    }
 
     public double getStartX() { return startX; }
     public double getStartY() { return startY; }

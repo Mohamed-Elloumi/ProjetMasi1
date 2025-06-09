@@ -2,6 +2,7 @@ package com.example.projetmasi.view;
 
 import com.example.projetmasi.command.Command;
 import com.example.projetmasi.command.DrawShapeCommand;
+import com.example.projetmasi.model.shape.ColoredShape;
 import com.example.projetmasi.model.shape.ShapeDrawable;
 import com.example.projetmasi.model.shape.ShapeFactory;
 import javafx.embed.swing.SwingFXUtils;
@@ -22,7 +23,7 @@ public class DrawingCanvas extends StackPane {
     private ShapeFactory.ShapeType currentShapeType = ShapeFactory.ShapeType.RECTANGLE;
     private Consumer<ShapeDrawable> onShapeCreated;
     private double startX, startY;
-    private Color currentColor = Color.BLACK; // ✅ couleur courante
+    private Color currentColor = Color.BLACK;
 
     private final List<ShapeDrawable> shapes = new ArrayList<>();
     private final Stack<Command> undoStack = new Stack<>();
@@ -47,11 +48,13 @@ public class DrawingCanvas extends StackPane {
 
             shape.setPosition(startX, startY);
             shape.setSize(endX - startX, endY - startY);
-            shape.setColor(currentColor); // ✅ appliquer la couleur courante
 
-            executeCommand(new DrawShapeCommand(shape, this));
+            // ✅ Appliquer le décorateur de couleur
+            ShapeDrawable coloredShape = new ColoredShape(shape, currentColor);
 
-            if (onShapeCreated != null) onShapeCreated.accept(shape);
+            executeCommand(new DrawShapeCommand(coloredShape, this));
+
+            if (onShapeCreated != null) onShapeCreated.accept(coloredShape);
         });
     }
 
@@ -119,7 +122,6 @@ public class DrawingCanvas extends StackPane {
         this.onShapeCreated = callback;
     }
 
-    // ✅ Permet de mettre à jour la couleur sélectionnée dans le contrôleur
     public void setCurrentColor(Color color) {
         this.currentColor = color;
     }
